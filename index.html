@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script>
+      function calculateAge() {
+        var input = document.getElementById("birthday").value;
+        var birthdayParts = input.split("/");
+        var day = parseInt(birthdayParts[0]);
+        var month = parseInt(birthdayParts[1]) - 1;
+        var year = parseInt(birthdayParts[2]);
+        var birthday = new Date(year, month, day);
+
+        var today = new Date();
+        var todayInMilliseconds = today.getTime();
+        var birthdayInMilliseconds = birthday.getTime();
+        var ageInMilliseconds = todayInMilliseconds - birthdayInMilliseconds;
+        var ageInSeconds = ageInMilliseconds / 1000;
+        var ageInMinutes = ageInSeconds / 60;
+        var ageInHours = ageInMinutes / 60;
+        var ageInDays = ageInHours / 24;
+        var ageInYears = ageInDays / 365.25;
+        var ageInMonths = ageInYears * 12;
+
+        var years = Math.floor(ageInYears);
+        var months = Math.floor(ageInMonths % 12);
+        var days = Math.floor(ageInDays % 365.25);
+
+        document.getElementById("result").innerHTML = 
+          years + " Years, " + months + " Months, " + days + " Days";
+      }
+    </script>
+  </head>
+  <body>
+    <label for="birthday">Birthday: </label>
+    <input type="text" id="birthday" placeholder="dd/mm/yyyy">
+    <br><br>
+    <button onclick="calculateAge()">Calculate</button>
+    <br><br>
+    <div id="result"></div>
+  </body>
+</html>
